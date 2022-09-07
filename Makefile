@@ -24,12 +24,6 @@ migrate:
 statics:
 	docker-compose exec django python manage.py collectstatic --no-input
 
-makemessages:
-	docker-compose exec django python manage.py makemessages -l es
-	docker-compose exec django python manage.py makemessages -l en
-
-compilemessages:
-	docker-compose exec django python manage.py compilemessages -f
 
 test:
 	docker-compose exec django python manage.py test
@@ -60,16 +54,9 @@ prod-migrate:
 prod-statics:
 	docker-compose -f docker-compose.prod.yml exec django python manage.py collectstatic --no-input
 
-prod-makemessages:
-	docker-compose -f docker-compose.prod.yml exec django python manage.py makemessages -l es
-	 docker-compose -f docker-compose.prod.yml exec django python manage.py makemessages -l en
-
-prod-compilemessages:
-	docker-compose -f docker-compose.prod.yml exec django python manage.py compilemessages -f
 
 prod-test:
 	docker-compose -f docker-compose.prod.yml exec django python manage.py test
-
 
 reset:
 	docker-compose down -v
