@@ -3,6 +3,8 @@ import datetime
 from django.db.models import F, Count
 from django.db.models.functions import ACos, Cos, Radians, Sin
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -21,13 +23,15 @@ class DriverModelViewSet(ModelViewSet):
     serializer_class = DriverModelSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+    http_method_names = ['get']
     filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     search_fields = ["user__username", "user__first_name"]
     ordering_fields = ["last_update", "-last_update"]
 
     @action(detail=False, url_path='closest')
     def closest(self, request):
-        """Find the closest driver to a point in a date"""
+        """Find the closest driver to a reference point in a specific date.
+        """
 
         point = SearchPointSerializer(data=request.data)
         if not point.is_valid():

@@ -11,6 +11,7 @@ class DriverModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Driver
         fields = ('id', 'user', 'lat', 'lng', 'last_update')
+        extra_kwargs = {'last_update': {'format': "%Y-%m-%dT%H:%M:%S.%fZ"}}
 
 
 class DayModelSerializer(serializers.ModelSerializer):

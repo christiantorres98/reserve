@@ -27,6 +27,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/users/', include(('users.urls', 'users'), namespace='users')),
     path('api/', include(('drivers.urls', 'drivers'), namespace='drivers')),
+    path('api/', include(('orders.urls', 'orders'), namespace='orders')),
     re_path(
         route=r'^swagger(?P<format>\.json|\.yaml)$',
         view=schema_view.without_ui(cache_timeout=0),
