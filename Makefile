@@ -66,3 +66,6 @@ clean:
 	rm -rf src/*/migrations/00**.py
 	find . -name "*.pyc" -exec rm -- {} +
 	rm -rf src/*/migrations/__pycache__/*
+
+restore_date:
+	 docker-compose exec django ./manage.py loaddata db.json
