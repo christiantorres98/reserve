@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "529311a6-d5c0-41ed-9f8c-a549dcf7dacc",
+		"name": "Reserve API collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "all drivers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/drivers/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"drivers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "closest driver",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lat\": 0,\n    \"lng\":0,\n    \"date\": \"2022-09-08T05:20:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/drivers/closest/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"drivers",
+						"closest",
+						""
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "0",
+							"disabled": true
+						},
+						{
+							"key": "lng",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all orders",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orders filtered by day, ordered by time",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/orders/?ordering=start_date__time&start_date__date=2022-09-07",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						""
+					],
+					"query": [
+						{
+							"key": "ordering",
+							"value": "start_date__time"
+						},
+						{
+							"key": "start_date__date",
+							"value": "2022-09-07"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orders filtered by driver and day, ordered by time",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/orders/?ordering=start_date__time&driver__id=1&start_date__date=2022-09-07",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						""
+					],
+					"query": [
+						{
+							"key": "ordering",
+							"value": "start_date__time"
+						},
+						{
+							"key": "driver__id",
+							"value": "1"
+						},
+						{
+							"key": "start_date__date",
+							"value": "2022-09-07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create order in not available schedule",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"driver\": 1,\n  \"client\": 4,\n  \"start_date\": \"2022-09-07T00:02:56.962Z\",\n  \"start_lat\": 0,\n  \"start_lng\": 0,\n  \"destiny_lat\": 0,\n  \"destiny_lng\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 40dc7dd928bdefd1cf67d762336cd3c1f5726a14",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"driver\": 1,\n  \"client\": 4,\n  \"start_date\": \"2022-09-07T14:00:00.000Z\",\n  \"start_lat\": 10,\n  \"start_lng\": 20,\n  \"destiny_lat\": 40,\n  \"destiny_lng\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/orders/",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
