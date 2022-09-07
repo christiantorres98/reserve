@@ -25,6 +25,8 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('api/users/', include(('users.urls', 'users'), namespace='users')),
+    path('api/', include(('drivers.urls', 'drivers'), namespace='drivers')),
     re_path(
         route=r'^swagger(?P<format>\.json|\.yaml)$',
         view=schema_view.without_ui(cache_timeout=0),
